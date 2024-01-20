@@ -52,6 +52,19 @@ app.post('/submit', (req, res) => {
     });
 });
 
+// New route to display submitted data
+app.get('/submissions', (req, res) => {
+  Website.find({})
+    .then(data => {
+      res.render('submissions', { submissions: data });
+    })
+    .catch(err => {
+      console.error(err);
+      res.send('Error fetching data');
+    });
+});
+
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
